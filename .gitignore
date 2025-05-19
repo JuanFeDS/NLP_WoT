@@ -3,7 +3,7 @@
 
 # Extensions
 *.csv
-*.txt
+*Data/
 *.pdf
 
 ### Python ###
