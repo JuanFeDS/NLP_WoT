@@ -3,10 +3,10 @@
 
 # Extensions
 *.csv
-*Data/
 *.pdf
 *.mp4
 *.png
+*.txt
 
 # Personal folders
 .windsurf/
