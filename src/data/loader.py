@@ -7,7 +7,7 @@ import fitz
 # Initialize logger for this module
 logger = logging.getLogger(__name__)
 
-class BookLoader:
+class BookManager:
     """Class to process PDF files and extract their text content."""
 
     def __init__(self) -> None:
@@ -41,24 +41,8 @@ class BookLoader:
             logger.error("Failed to load PDF %s: %s", pdf_path, str(e), exc_info=True)
             raise
 
-    def load_text(self, file_path: str) -> str:
-        """Load text content from a file.
 
-        Args:
-            file_path: Path to the text file.
-
-        Returns:
-            str: The content of the text file.
-
-        """
-
-        logger.debug("Loading text from file: %s", file_path)
-        with open(file_path, 'r', encoding='utf-8') as file:
-            text = file.read()
-        logger.debug("Successfully loaded %d characters from %s", len(text), file_path)
-        return text
-
-    def save_text(self, doc: fitz.Document, file_path: str) -> None:
+    def save_doc(self, doc: fitz.Document, file_path: str) -> None:
         """Save the text content to a file.
 
         Args:
@@ -90,4 +74,30 @@ class BookLoader:
         except OSError as e:
             error_msg = f"Failed to save document to {file_path}"
             logger.error("%s: %s", error_msg, str(e))
+            raise
+
+    def load_doc(self, file_path: str) -> str:
+        """Load text content from a file.
+
+        Args:
+            file_path: Path to the text file.
+
+        Returns:
+            str: The content of the text file.
+        """
+
+        try:
+            logger.debug("Loading text from file: %s", file_path)
+            with open(file_path, 'r', encoding='utf-8') as file:
+                text = file.read()
+            logger.debug("Successfully loaded %d characters from %s", len(text), file_path)
+            
+            return text
+        except FileNotFoundError as e:
+            error_msg = f"File not found: {file_path}"
+            logger.error(error_msg)
+            raise FileNotFoundError(error_msg) from e
+        except Exception as e:
+            error_msg = f"Failed to load text from {file_path}: {str(e)}"
+            logger.error(error_msg)
             raise
