@@ -17,3 +17,8 @@ ENV = os.getenv("ENV", "development")
 DATA_DIR = Path(os.getenv("DATA_DIR", BASE_DIR / "data"))
 MODELS_DIR = Path(os.getenv("MODELS_DIR", BASE_DIR / "models"))
 LOGS_DIR = Path(os.getenv("LOGS_DIR", BASE_DIR / "logs"))
+
+# Books
+books = os.listdir(DATA_DIR / "Raw")
+books = [book for book in books if book.endswith(".pdf")]
+books = [book.split(".")[0] for book in books]
