@@ -37,14 +37,32 @@ Este proyecto implementa técnicas de Procesamiento de Lenguaje Natural (NLP) pa
    pip install -r requirements.txt
    ```
 
+Opcional (solo pipeline de extracción/limpieza/split):
+```bash
+pip install -r requirements.txt
+```
+
 ## 🚀 Uso
 
 1. Coloca tus archivos PDF en el directorio `data/Raw/`
-2. Ejecuta el análisis:
-   ```bash
-   python run.py
-   ```
-3. Sigue las instrucciones en pantalla
+2. Configura variables de entorno (opcional) creando `.env` (ver ejemplo abajo)
+3. Ejecuta desde `run.py`:
+   - Procesar todos los libros detectados (por defecto):
+     ```bash
+     python run.py
+     ```
+   - Procesar un libro específico:
+     ```bash
+     python run.py --book WoT_08
+     ```
+   - Procesar todos explícitamente:
+     ```bash
+     python run.py --all-books
+     ```
+   - Override de normalización ASCII en runtime:
+     ```bash
+     python run.py --ascii-norm false
+     ```
 
 ## 📁 Estructura del Proyecto
 
@@ -64,6 +82,26 @@ NLP_WoT/
 ```
 
 ---
+
+## ⚙️ Variables de entorno (.env)
+
+El módulo `src/config/settings.py` carga automáticamente `.env` en la raíz si existe. Puedes usar `.env.example` como base.
+
+Variables soportadas:
+- `ENV`: entorno actual (por defecto `development`).
+- `RAW_DATA_DIR`: ruta a PDF de entrada (por defecto `./data/Raw`).
+- `PROCESSED_DATA_DIR`: ruta para TXT intermedios (por defecto `./data/processed`).
+- `CLEAN_DATA_DIR`: ruta para capítulos generados (por defecto `./data/clean`).
+- `NORMALIZE_TO_ASCII`: `true/false` para normalización a ASCII (por defecto `true`).
+
+Ejemplo rápido:
+```env
+ENV=development
+RAW_DATA_DIR=./data/Raw
+PROCESSED_DATA_DIR=./data/processed
+CLEAN_DATA_DIR=./data/clean
+NORMALIZE_TO_ASCII=true
+```
 
 <div align="center">
 Hecho con ❤️ para la comunidad de The Wheel of Time
