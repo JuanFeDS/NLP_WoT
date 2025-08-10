@@ -75,6 +75,13 @@ class BookManager:
             error_msg = f"Failed to save document to {file_path}"
             logger.error("%s: %s", error_msg, str(e))
             raise
+        finally:
+            # Ensure the PDF document is properly closed
+            try:
+                if hasattr(doc, "close"):
+                    doc.close()
+            except Exception as e:
+                logger.debug("Failed to close PDF document: %s", e)
 
     def load_doc(self, file_path: str) -> str:
         """Load text content from a file.
@@ -91,7 +98,7 @@ class BookManager:
             with open(file_path, 'r', encoding='utf-8') as file:
                 text = file.read()
             logger.debug("Successfully loaded %d characters from %s", len(text), file_path)
-            
+
             return text
         except FileNotFoundError as e:
             error_msg = f"File not found: {file_path}"
