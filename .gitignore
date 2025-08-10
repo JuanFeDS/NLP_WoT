@@ -6,11 +6,15 @@
 *.pdf
 *.mp4
 *.png
-*.txt
+
+# Directories
+log/
+data/clean/
+data/raw/
+data/processed/
 
 # Personal folders
 .windsurf/
-CHANGE.md
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
