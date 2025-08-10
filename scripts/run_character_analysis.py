@@ -1,7 +1,4 @@
 """_summary_"""
-import sys
-sys.path.append('./')
-
 from src.config import settings
 from src.data.loader import BookManager
 from src.data.preprocessor import TextProcessor
@@ -14,25 +11,28 @@ def run_character_analysis(file_name: str):
     logger = get_logger()
     loader = BookManager()
 
-    # PATHS 
-    data_dir = settings.DATA_DIR
-    # file_name = str(input('Enter the file name (without extension): '))
+    # PATHS
+    raw_data_dir = settings.RAW_DATA_DIR   
+    processed_data_dir = settings.PROCESSED_DATA_DIR
 
-    pdf_path = f'{data_dir}/Raw/{file_name}.pdf'
-    txt_path = f'{data_dir}/Processed/{file_name}.txt'
+    pdf_path = raw_data_dir / f"{file_name}.pdf"
+    txt_path = processed_data_dir / f"{file_name}.txt"
 
     try:
         logger.info("Loading text from file: %s", txt_path)
         text = loader.load_doc(txt_path)
     except FileNotFoundError:
-        logger.info("PDF file not found: %s", pdf_path)
-        doc = loader.build_doc(pdf_path)
-        loader.save_doc(doc, txt_path)
+        logger.info("TXT not found. Building from PDF: %s", pdf_path)
+        doc = loader.build_doc(str(pdf_path))
+        loader.save_doc(doc, str(txt_path))
         logger.info("Text saved to file: %s", txt_path)
         text = loader.load_doc(txt_path)
 
     processor = TextProcessor()
     clean_text = processor.clean_text(text)
     logger.info("Text cleaned")
+
+    processor.split_by_chapters(clean_text, file_name)
+    logger.info("Text split by chapters")
 
     return clean_text
