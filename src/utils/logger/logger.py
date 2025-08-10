@@ -19,7 +19,7 @@ MAX_LOG_SIZE = 5 * 1024 * 1024  # 5MB
 BACKUP_COUNT = 5
 
 # Ensure logs directory exists
-LOG_DIR = 'logs'
+LOG_DIR = 'log'
 
 os.makedirs(LOG_DIR, exist_ok=True)
 
