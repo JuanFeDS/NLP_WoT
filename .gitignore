@@ -12,6 +12,11 @@ log/
 data/clean/
 data/raw/
 data/processed/
+data/outputs/
+
+# Analysis outputs
+*.coverage
+.coverage.*
 
 # Personal folders
 .windsurf/
