@@ -1,21 +1,21 @@
-"""Run the character analysis logic"""
-from scripts.run_character_analysis import run_character_analysis
+"""Ejecuta el pipeline de procesamiento de libros"""
+from src.scripts.process_books import process_book
 from src.config import settings
 
-from src.utils.logger.logger import get_logger
+from src.config.logger import get_logger
 
 def run():
-    """Run the character analysis logic"""
+    """Ejecuta el pipeline de procesamiento de libros"""
     logger = get_logger()
-    # Ensure output directories exist
+    # Asegurar que los directorios de salida existen
     settings.ensure_output_dirs()
 
-    # Get available books from RAW_DATA_DIR
+    # Obtener libros disponibles desde RAW_DATA_DIR
     books = settings.list_books()
 
     for book in books:
-        logger.info("Running character analysis for book: %s", book)
-        _ = run_character_analysis(book)
+        logger.info("Procesando libro: %s", book)
+        _ = process_book(book)
 
 if __name__ == "__main__":
     run()
