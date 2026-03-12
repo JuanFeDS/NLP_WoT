@@ -1,4 +1,4 @@
-"""Settings module"""
+"""Módulo de configuración de la aplicación"""
 import os
 from pathlib import Path
 
@@ -19,12 +19,11 @@ PROCESSED_DATA_DIR = Path(os.getenv("PROCESSED_DATA_DIR") or (BASE_DIR / "data" 
 CLEAN_DATA_DIR = Path(os.getenv("CLEAN_DATA_DIR") or (BASE_DIR / "data" / "clean"))
 
 # === PREPROCESAMIENTO ===
-def _to_bool(value: str, default: bool) -> bool:
-    if value is None:
-        return default
+def _to_bool(value: str) -> bool:
+    """Convierte un valor a booleano."""
     return str(value).strip().lower() in {"1", "true", "t", "yes", "y"}
 
-NORMALIZE_TO_ASCII = _to_bool(os.getenv("NORMALIZE_TO_ASCII", "true"), True)
+NORMALIZE_TO_ASCII = _to_bool(os.getenv("NORMALIZE_TO_ASCII", "true"))
 
 def ensure_output_dirs() -> None:
     """Crea los directorios de salida si no existen."""
@@ -50,5 +49,10 @@ def list_books(extensions=("pdf",)) -> list[str]:
         raise NotADirectoryError(f"RAW_DATA_DIR no es un directorio: {RAW_DATA_DIR}")
 
     exts = {ext.lower().lstrip('.') for ext in extensions}
-    files = [p for p in RAW_DATA_DIR.iterdir() if p.is_file() and p.suffix.lower().lstrip('.') in exts]
+
+    def condition(p):
+        """Verifica si un archivo cumple con las condiciones."""
+        return p.is_file() and p.suffix.lower().lstrip('.') in exts
+
+    files = [p for p in RAW_DATA_DIR.iterdir() if condition(p)]
     return sorted({p.stem for p in files})

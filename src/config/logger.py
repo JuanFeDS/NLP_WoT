@@ -1,43 +1,42 @@
 """
-Configuration module for application logging.
+Módulo de configuración para logging de la aplicación.
 
-This module sets up a centralized logging configuration that can be imported
-and used across the application. It configures both console and file handlers
-with appropriate formatting and log levels.
+Este módulo configura un sistema de logging centralizado que puede ser importado
+y usado en toda la aplicación. Configura handlers de consola y archivo
+con formato y niveles de log apropiados.
 """
 import os
-import logging
-from logging.handlers import RotatingFileHandler
 from datetime import datetime
 from typing import Optional
 
-# Constants
-LOG_FORMAT = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+import logging
+from logging.handlers import RotatingFileHandler
+
+# Constantes
+LOG_FORMAT = '%(asctime)s - %(levelname)s - %(message)s - %(name)s - %(funcName)s'
 DATE_FORMAT = '%Y-%m-%d %H:%M:%S'
 MAX_LOG_SIZE = 5 * 1024 * 1024  # 5MB
 BACKUP_COUNT = 5
 
-# Ensure logs directory exists
-LOG_DIR = os.path.join(
-    os.path.dirname(os.path.dirname(os.path.dirname(__file__))),
-    'logs'
-)
+# Asegurar que el directorio de logs existe
+LOG_DIR = 'log'
+
 os.makedirs(LOG_DIR, exist_ok=True)
 
-# Create a custom logger
+# Crear logger personalizado
 logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)
 
-# Create formatter
+# Crear formateador
 formatter = logging.Formatter(LOG_FORMAT, datefmt=DATE_FORMAT)
 
 try:
-    # Console handler (shows INFO and above)
+    # Console handler (muestra WARNING y superiores)
     console_handler = logging.StreamHandler()
-    console_handler.setLevel(logging.INFO)
+    console_handler.setLevel(logging.WARNING)
     console_handler.setFormatter(formatter)
 
-    # File handler (shows DEBUG and above, rotates when reaches MAX_LOG_SIZE)
+    # File handler (muestra DEBUG y superiores, rota al alcanzar MAX_LOG_SIZE)
     log_file = os.path.join(LOG_DIR, f'app_{datetime.now().strftime("%Y%m%d")}.log')
     file_handler = RotatingFileHandler(
         log_file,
@@ -49,25 +48,21 @@ try:
     file_handler.setFormatter(formatter)
 
 except Exception as e:
-    logging.error("Failed to configure logging handlers: %s", e)
+    logging.error("Error al configurar handlers de logging: %s", e)
     raise
 
-# Add handlers to the logger
-if not logger.handlers:  # Avoid adding handlers multiple times
+# Agregar handlers al logger
+if not logger.handlers:  # Evitar agregar handlers múltiples veces
     logger.addHandler(console_handler)
     logger.addHandler(file_handler)
 
 def get_logger(name: Optional[str] = None) -> logging.Logger:
-    """Get a logger with the specified name.
+    """Obtiene un logger con el nombre especificado.
     
     Args:
-        name: Name of the logger. If None, returns the root logger.
-              Defaults to None.
+        name: Nombre del logger. Si es None, devuelve el root logger.
     
     Returns:
-        Configured logger instance.
+        Instancia de logger configurada.
     """
-    if name is not None and not isinstance(name, str):
-        raise TypeError("Logger name must be a string or None")
-
     return logging.getLogger(name)
