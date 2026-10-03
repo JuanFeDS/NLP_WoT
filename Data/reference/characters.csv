@@ -1,0 +1,32 @@
+name,aliases,affiliation,gender,first_appearance_book,is_pov,importance,source,validation_status,notes
+Rand al'Thor,Rand;Dragón Renacido;Lews Therin;Car'a'carn,Two Rivers,M,1,True,main,manual,validated,Protagonista principal
+Matrim Cauthon,Matrim;Mat;Hijo de las Batallas;Príncipe de los Cuervos,Two Rivers,M,1,True,main,manual,validated,Gambler y estratega
+Perrin Aybara,Perrin;Toro Joven;Lord Perrin,Two Rivers,M,1,True,main,manual,validated,Hermano de lobos
+Egwene al'Vere,Egwene;Asiento de Amyrlin,Two Rivers,F,1,True,main,manual,validated,Líder de las Aes Sedai
+Nynaeve al'Meara,Nynaeve;Sabia;Aes Sedai,Two Rivers,F,1,True,main,manual,validated,Wisdom y Aes Sedai
+Elayne Trakand,Elayne;Reina de Andor,Andor,F,1,True,main,manual,validated,Reina y Aes Sedai
+Aviendha,Sabia Aiel,Aiel,F,3,True,main,manual,validated,Aiel Wise One
+Min Farshaw,Min;Elmindreda,Baerlon,F,1,True,main,manual,validated,Vidente
+Moiraine Damodred,Moiraine;Aes Sedai Azul,Cairhien,F,1,True,secondary,manual,validated,Mentora de Rand
+Lan Mandragoran,Lan;al'Lan;Guardián,Malkier,M,1,True,secondary,manual,validated,Warder de Moiraine
+Siuan Sanche,Siuan;Ex-Amyrlin,Tear,F,2,True,secondary,manual,validated,Ex-líder de la Torre Blanca
+Gawyn Trakand,Gawyn;Primer Príncipe de la Espada,Andor,M,1,True,secondary,manual,validated,Hermano de Elayne
+Galad Damodred,Galad;Lord Capitán Comandante,Cairhien,M,1,True,secondary,manual,validated,Líder de los Whitecloaks
+Tuon Athaem Kore Paendrag,Tuon;Fortuona;Emperatriz;Hija de las Nueve Lunas,Seanchan,F,9,True,secondary,manual,validated,Emperatriz Seanchan
+Faile Bashere,Faile;Zarine,Saldaea,F,3,True,secondary,manual,validated,Esposa de Perrin
+Thom Merrilin,Thom;Juglar,Andor,M,1,False,supporting,manual,validated,Juglar y espía
+Loial,Ogier,Stedding Shangtai,M,1,False,supporting,manual,validated,Escritor Ogier
+Cadsuane Melaidhrin,Cadsuane;Aes Sedai Verde,Far Madding,F,7,True,secondary,manual,validated,Mentora de Rand
+Logain Ablar,Logain;Falso Dragón;M'Hael,Ghealdan,M,2,True,secondary,manual,validated,Líder de Asha'man
+Mazrim Taim,Mazrim;M'Hael,Saldaea,M,4,False,secondary,manual,validated,Líder de Asha'man
+Padan Fain,Padan;Ordeith,Lugard,M,1,False,supporting,manual,validated,Amigo Oscuro corrupto
+Verin Mathwin,Verin;Aes Sedai Marrón,Far Madding,F,1,False,supporting,manual,validated,Aes Sedai investigadora
+Elaida a'Roihan,Elaida;Aes Sedai Roja,Murandy,F,1,False,supporting,manual,validated,Ex-Amyrlin corrupta
+Morgase Trakand,Morgase;Reina de Andor,Andor,F,1,False,supporting,manual,validated,Madre de Elayne y Gawyn
+Davram Bashere,Davram;Gran Capitán,Saldaea,M,4,False,supporting,manual,validated,Padre de Faile
+Birgitte Silverbow,Birgitte;Arquera,Tel'aran'rhiod,F,4,True,secondary,manual,validated,Héroe del Cuerno
+Gareth Bryne,Gareth;Gran Capitán,Andor,M,4,False,supporting,manual,validated,General de Egwene
+Alanna Mosvani,Alanna;Aes Sedai Verde,Arafel,F,2,False,supporting,manual,validated,Vinculó a Rand
+Leane Sharif,Leane;Guardiana,Arad Doman,F,2,False,supporting,manual,validated,Asistente de Siuan
+Rhuarc,Jefe de Clan Aiel,Aiel,M,3,False,supporting,manual,validated,Líder Aiel
+Tam al'Thor,Tam,Two Rivers,M,1,False,supporting,manual,validated,Padre adoptivo de Rand
