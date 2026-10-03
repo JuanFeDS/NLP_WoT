@@ -3,6 +3,7 @@
 
 # Extensions
 *.csv
+!data/reference/*.csv
 *.pdf
 *.mp4
 *.png
