@@ -73,6 +73,18 @@ class TextProcessor:
         # Crear directorio de salida
         output_dir = Path(settings.CLEAN_DATA_DIR) / file_name
         output_dir.mkdir(parents=True, exist_ok=True)
+
+        # Limpiar capítulos de corridas anteriores para evitar mezclar
+        # numeraciones de distintas ejecuciones del splitter
+        stale_files = list(output_dir.glob("*.json"))
+        for stale_file in stale_files:
+            stale_file.unlink()
+        if stale_files:
+            self.logger.info(
+                "Eliminados %d capítulos de una corrida anterior en: %s",
+                len(stale_files), output_dir,
+            )
+
         self.logger.info("Guardando capítulos en: %s", output_dir)
 
         if not matches:
