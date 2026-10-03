@@ -1,8 +1,7 @@
 # 📚 Análisis de Texto - The Wheel of Time (WoT)
 
-[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
+[![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
 
 Este proyecto implementa técnicas de Procesamiento de Lenguaje Natural (NLP) para analizar los libros de ***The Wheel of Time***. El sistema permite cargar documentos en formato PDF o TXT, procesar el texto y realizar diversos análisis sobre el contenido.
 
@@ -15,8 +14,8 @@ Este proyecto implementa técnicas de Procesamiento de Lenguaje Natural (NLP) pa
 
 ## 📦 Requisitos
 
-- Python 3.8 o superior
-- Dependencias listadas en `requirements.txt`
+- Python 3.10 o superior
+- Poetry (gestor de dependencias)
 
 ## 🛠️ Instalación
 
@@ -26,21 +25,21 @@ Este proyecto implementa técnicas de Procesamiento de Lenguaje Natural (NLP) pa
    cd NLP_WoT
    ```
 
-2. Crea y activa un entorno virtual (recomendado):
+2. Instala Poetry si no lo tienes:
    ```bash
-   python -m venv venv
-   source venv/bin/activate  # En Windows: .\venv\Scripts\activate
+   # Windows (PowerShell)
+   (Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | py -
+
+   # Linux/macOS
+   curl -sSL https://install.python-poetry.org | python3 -
    ```
 
-3. Instala las dependencias:
+3. Instala las dependencias del proyecto:
    ```bash
-   pip install -r requirements.txt
+   poetry install
    ```
 
-Opcional (solo pipeline de extracción/limpieza/split):
-```bash
-pip install -r requirements.txt
-```
+   Esto creará automáticamente un entorno virtual y instalará todas las dependencias necesarias.
 
 ## 🚀 Uso
 
@@ -49,20 +48,26 @@ pip install -r requirements.txt
 3. Ejecuta desde `run.py`:
    - Procesar todos los libros detectados (por defecto):
      ```bash
-     python run.py
+     poetry run python run.py
      ```
    - Procesar un libro específico:
      ```bash
-     python run.py --book WoT_08
+     poetry run python run.py --book WoT_08
      ```
    - Procesar todos explícitamente:
      ```bash
-     python run.py --all-books
+     poetry run python run.py --all-books
      ```
    - Override de normalización ASCII en runtime:
      ```bash
-     python run.py --ascii-norm false
+     poetry run python run.py --ascii-norm false
      ```
+
+   **Nota**: También puedes activar el entorno virtual de Poetry y ejecutar directamente:
+   ```bash
+   poetry shell
+   python run.py
+   ```
 
 ## 📁 Estructura del Proyecto
 
@@ -71,7 +76,6 @@ NLP_WoT/
 ├── data/               # Directorio para los datos
 │   ├── Raw/           # Archivos PDF originales
 │   └── Processed/     # Archivos de texto procesados
-├── notebooks/         # Jupyter notebooks para análisis exploratorio
 ├── scripts/           # Scripts ejecutables
 ├── src/               # Código fuente del proyecto
 │   ├── config/       # Configuraciones
